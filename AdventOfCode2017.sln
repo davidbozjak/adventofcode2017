@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_Template", "Day_Templat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day2_Checksum", "Day2_Checksum\Day2_Checksum.csproj", "{D5FCD900-DE8E-4AE4-9E2E-F8D67B0BFECB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day3_Spiral", "Day3_Spiral\Day3_Spiral.csproj", "{225CC759-0461-4304-A11C-5D85F60247AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D5FCD900-DE8E-4AE4-9E2E-F8D67B0BFECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5FCD900-DE8E-4AE4-9E2E-F8D67B0BFECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5FCD900-DE8E-4AE4-9E2E-F8D67B0BFECB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{225CC759-0461-4304-A11C-5D85F60247AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{225CC759-0461-4304-A11C-5D85F60247AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{225CC759-0461-4304-A11C-5D85F60247AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{225CC759-0461-4304-A11C-5D85F60247AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
