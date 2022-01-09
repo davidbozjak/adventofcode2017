@@ -4,9 +4,11 @@ var factory = new UniqueFactory<string, ProgramElement>(name => new ProgramEleme
 
 var programs = new InputProvider<ProgramElement?>("Input.txt", GetProgram).Where(w => w != null).Cast<ProgramElement>().ToList();
 
+if (programs.Where(w => w.Parent == null).Count() != 1) throw new Exception();
+
 var bottom = programs.Where(w => w.Parent == null).First();
 
-Console.WriteLine($"Part 1: {bottom.Name} (Count: {programs.Where(w => w.Parent == null).Count()})");
+Console.WriteLine($"Part 1: {bottom.Name}");
 
 var unbalancedDiscs = programs.Where(w => !w.IsBalanced).ToList();
 var problematicDiscParent = unbalancedDiscs.OrderByDescending(w => w.Level).First();
