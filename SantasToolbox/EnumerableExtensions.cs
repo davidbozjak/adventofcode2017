@@ -13,4 +13,9 @@ public static class EnumerableExtensions
           elements.SelectMany((e, i) =>
             elements.Skip(i + 1).Combinations(k - 1).Select(c => (new[] { e }).Concat(c)));
     }
+
+    public static T GetMostFrequentElement<T>(this IEnumerable<T> elements)
+    {
+        return elements.GroupBy(w => w).OrderByDescending(w => w.Count()).Select(w => w.Key).First();
+    }
 }

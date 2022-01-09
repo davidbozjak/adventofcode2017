@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day5_JumpMaze", "Day5_JumpM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day6_MemoryBalancer", "Day6_MemoryBalancer\Day6_MemoryBalancer.csproj", "{04F34E23-0EF2-4400-ADA1-A592FC459119}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day7_ProgramTree", "Day7_ProgramTree\Day7_ProgramTree.csproj", "{0B21984D-B9EE-411F-88A8-0D2736D2D7B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{04F34E23-0EF2-4400-ADA1-A592FC459119}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04F34E23-0EF2-4400-ADA1-A592FC459119}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04F34E23-0EF2-4400-ADA1-A592FC459119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B21984D-B9EE-411F-88A8-0D2736D2D7B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B21984D-B9EE-411F-88A8-0D2736D2D7B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B21984D-B9EE-411F-88A8-0D2736D2D7B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B21984D-B9EE-411F-88A8-0D2736D2D7B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

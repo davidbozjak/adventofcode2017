@@ -100,5 +100,5 @@ public static class ListExtenstions
     {
         return input.GetSlidingWindow(lastIndexOfWindow, windowLength)
             .Sum(w => Convert.ToInt64(w));
-    }   
+    }
 }
