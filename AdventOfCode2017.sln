@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day3_Spiral", "Day3_Spiral\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day4_Passphrases", "Day4_Passphrases\Day4_Passphrases.csproj", "{92A71A5D-3C3F-42FB-9972-63B25AD80C54}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day5_JumpMaze", "Day5_JumpMaze\Day5_JumpMaze.csproj", "{F57E0760-7DE5-407D-8640-B07F8A48ED99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{92A71A5D-3C3F-42FB-9972-63B25AD80C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92A71A5D-3C3F-42FB-9972-63B25AD80C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92A71A5D-3C3F-42FB-9972-63B25AD80C54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F57E0760-7DE5-407D-8640-B07F8A48ED99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F57E0760-7DE5-407D-8640-B07F8A48ED99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F57E0760-7DE5-407D-8640-B07F8A48ED99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F57E0760-7DE5-407D-8640-B07F8A48ED99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
