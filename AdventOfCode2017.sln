@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day6_MemoryBalancer", "Day6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day7_ProgramTree", "Day7_ProgramTree\Day7_ProgramTree.csproj", "{0B21984D-B9EE-411F-88A8-0D2736D2D7B3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day8_Registers", "Day8_Registers\Day8_Registers.csproj", "{C3207652-0EAC-4EC9-86C6-C76A45D08CB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{0B21984D-B9EE-411F-88A8-0D2736D2D7B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B21984D-B9EE-411F-88A8-0D2736D2D7B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B21984D-B9EE-411F-88A8-0D2736D2D7B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3207652-0EAC-4EC9-86C6-C76A45D08CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3207652-0EAC-4EC9-86C6-C76A45D08CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3207652-0EAC-4EC9-86C6-C76A45D08CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3207652-0EAC-4EC9-86C6-C76A45D08CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
