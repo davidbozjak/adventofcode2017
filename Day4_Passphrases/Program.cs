@@ -2,9 +2,11 @@
 
 Console.WriteLine($"Part 1: {CountEntriesWithOnlyUniqueWords(passphrases)}");
 
-var passphraseAnagrams = passphrases.Select(w => w.Select(ww => string.Join(',',
-    ww.ToCharArray().GroupBy(www => www).OrderBy(w => w.Key).Select(www => $"(({(www.Key)}):({www.Count()}))")
-)));
+var passphraseAnagrams = passphrases
+    .Select(w => 
+        w.Select(ww => 
+            string.Join(',', ww.ToCharArray().GroupBy(www => www).OrderBy(w => w.Key).Select(www => $"(({(www.Key)}):({www.Count()}))")))
+    );
 
 Console.WriteLine($"Part 2: {CountEntriesWithOnlyUniqueWords(passphraseAnagrams)}");
 

@@ -24,23 +24,20 @@ for (int steps = 1; !foundPart1 || !foundPart2;)
 
     for (int i = 0; i < stepsMade; i++)
     {
-        switch (state)
+        pozX = state switch
         {
-            case State.Right:
-                pozX++;
-                break;
-            case State.Up:
-                pozY--;
-                break;
-            case State.Left:
-                pozX--;
-                break;
-            case State.Down:
-                pozY++;
-                break;
-            default: throw new Exception();
-        }
-        
+            State.Right => pozX + 1,
+            State.Left => pozX - 1,
+            _ => pozX
+        };
+
+        pozY = state switch
+        {
+            State.Up => pozY - 1,
+            State.Down => pozY + 1,
+            _ => pozY
+        };
+
         if (!foundPart2)
         {
             var sum = createdCells.Where(w => Math.Abs(pozX - w.X) <= 1 && Math.Abs(pozY - w.Y) <= 1).Sum(w => w.Value);
