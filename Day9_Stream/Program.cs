@@ -3,7 +3,7 @@
 bool isGarbage = false;
 bool ignoreNext = false;
 Group? currentGroup = null;
-List<Group> allGroups = new List<Group>();
+List<Group> allGroups = new();
 int garabageCharacters = 0;
 
 for (int index = 0; index < input.Length; index++)
