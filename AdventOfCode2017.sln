@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day8_Registers", "Day8_Regi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day9_Stream", "Day9_Stream\Day9_Stream.csproj", "{5E0E01D8-FB69-4AEE-962F-9A45AAEE6F61}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day10_Knots", "Day10_Knots\Day10_Knots.csproj", "{737F2B0A-2BD6-46ED-9257-98E31B0948F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{5E0E01D8-FB69-4AEE-962F-9A45AAEE6F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E0E01D8-FB69-4AEE-962F-9A45AAEE6F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E0E01D8-FB69-4AEE-962F-9A45AAEE6F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{737F2B0A-2BD6-46ED-9257-98E31B0948F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{737F2B0A-2BD6-46ED-9257-98E31B0948F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{737F2B0A-2BD6-46ED-9257-98E31B0948F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{737F2B0A-2BD6-46ED-9257-98E31B0948F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
