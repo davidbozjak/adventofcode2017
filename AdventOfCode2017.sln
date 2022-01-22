@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day9_Stream", "Day9_Stream\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day10_Knots", "Day10_Knots\Day10_Knots.csproj", "{737F2B0A-2BD6-46ED-9257-98E31B0948F2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day11_Hex", "Day11_Hex\Day11_Hex.csproj", "{20FE31D0-C350-4F1D-BBF3-107C40057392}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{737F2B0A-2BD6-46ED-9257-98E31B0948F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{737F2B0A-2BD6-46ED-9257-98E31B0948F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{737F2B0A-2BD6-46ED-9257-98E31B0948F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20FE31D0-C350-4F1D-BBF3-107C40057392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20FE31D0-C350-4F1D-BBF3-107C40057392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20FE31D0-C350-4F1D-BBF3-107C40057392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20FE31D0-C350-4F1D-BBF3-107C40057392}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
