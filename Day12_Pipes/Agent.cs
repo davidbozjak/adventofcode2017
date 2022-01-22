@@ -5,8 +5,8 @@ class Agent
 {
     public int Id { get; }
 
-    private readonly List<Agent> reachableAgents = new();
-    public IReadOnlyCollection<Agent> ReachableAgents => this.reachableAgents.AsReadOnly();
+    private readonly List<Agent> connectedAgents = new();
+    public IReadOnlyCollection<Agent> ConnectedAgents => this.connectedAgents.AsReadOnly();
 
     public Agent(int id)
     {
@@ -14,7 +14,7 @@ class Agent
     }
 
     public void AddAgents(IEnumerable<Agent> connections)
-        => this.reachableAgents.AddRange(connections);
+        => this.connectedAgents.AddRange(connections);
 
 
     public HashSet<Agent> GetAllReachableAgents()
@@ -31,7 +31,7 @@ class Agent
         if (reachable.Contains(this)) return;
         reachable.Add(this);
 
-        foreach (var agent in reachableAgents)
+        foreach (var agent in connectedAgents)
         {
             agent.PopulateAllReachable(reachable);
         }
@@ -49,7 +49,7 @@ class Agent
 
         if (agent == this) return true;
 
-        foreach (var reachableAgent in this.ReachableAgents)
+        foreach (var reachableAgent in this.ConnectedAgents)
             if (reachableAgent.CanReach(agent, visited)) return true;
 
         return false;
