@@ -15,9 +15,9 @@ var configurations = new List<string>()
 };
 
 bool hasJumpedAhead = false;
-long totalNumberOfDancestoDo = (long)1e9; // 1000000000
+long totalNumberOfDancesToDo = (long)1e9; // 1000000000
 
-for (long noOfDances = 1; noOfDances < totalNumberOfDancestoDo; noOfDances++)
+for (long noOfDances = 1; noOfDances < totalNumberOfDancesToDo; noOfDances++)
 {
     dancers = ExecuteDance(dancers, commands);
 
@@ -34,7 +34,7 @@ for (long noOfDances = 1; noOfDances < totalNumberOfDancestoDo; noOfDances++)
             var indexOfLastOccurance = configurations.IndexOf(afterDanceConfiguration);
             long cycleLength = noOfDances + 1 - indexOfLastOccurance;
 
-            while (noOfDances + cycleLength < totalNumberOfDancestoDo) noOfDances += cycleLength;
+            noOfDances += cycleLength * ((totalNumberOfDancesToDo - noOfDances) / cycleLength);
 
             hasJumpedAhead = true;
         }
