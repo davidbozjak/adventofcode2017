@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day15_DuelGen", "Day15_Duel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day16_Dance", "Day16_Dance\Day16_Dance.csproj", "{460E8411-43B3-4ABD-8619-F41FEA77ED1E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day17_Spinlock", "Day17_Spinlock\Day17_Spinlock.csproj", "{18D0CA91-C276-46C7-A968-BE03B2AA87A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{460E8411-43B3-4ABD-8619-F41FEA77ED1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{460E8411-43B3-4ABD-8619-F41FEA77ED1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{460E8411-43B3-4ABD-8619-F41FEA77ED1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18D0CA91-C276-46C7-A968-BE03B2AA87A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18D0CA91-C276-46C7-A968-BE03B2AA87A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18D0CA91-C276-46C7-A968-BE03B2AA87A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18D0CA91-C276-46C7-A968-BE03B2AA87A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
