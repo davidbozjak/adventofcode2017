@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-bool animate = true;
+bool animate = false;
 
 var lines = new InputProvider<string>("Input.txt", GetString).ToList();
 
@@ -31,12 +31,11 @@ while (train.MakeStep())
     {
         worldPrinter.Print(world, train);
         Thread.Sleep(200);
-        //Console.ReadKey();
     }
 }
 
 Console.WriteLine($"Part 1: Path: {train.VisitedCheckpoints}");
-Console.WriteLine($"Part 1: StepsTaken: {train.StepsTaken + 1}");
+Console.WriteLine($"Part 1: StepsTaken: {train.StepsTaken}");
 
 
 static bool GetString(string? input, out string? value)
@@ -79,34 +78,26 @@ class Track : IWorldObject
         this.CharRepresentation = type;
     }
 
-    private readonly List<Track> neighbours = new List<Track>();
-    public IEnumerable<Track> Neighbours => this.neighbours;
+    public IEnumerable<Track> Neighbours => 
+        new[] { this.NeighbourBelow, this.NeighbourAbove, this.NeighbourLeft, this.NeighbourRight }
+        .Where(w => w != null)
+        .Cast<Track>();
 
     public void SetNeighbours(IEnumerable<Track> tracks)
     {
-        this.neighbours.Clear();
-        
         if (this.CharRepresentation == ' ')
             throw new Exception();
 
-        this.neighbours.AddRange(tracks.Where(w =>
-            (w.Position.Y == this.Position.Y &&
-                Math.Abs(this.Position.X - w.Position.X) == 1) ||
-            (w.Position.X == this.Position.X &&
-            Math.Abs(this.Position.Y - w.Position.Y) == 1)));
+        this.NeighbourBelow = tracks.FirstOrDefault(w => w.Position.X == this.Position.X && w.Position.Y == this.Position.Y + 1);
+        this.NeighbourAbove = tracks.FirstOrDefault(w => w.Position.X == this.Position.X && w.Position.Y == this.Position.Y - 1);
+        this.NeighbourLeft =  tracks.FirstOrDefault(w => w.Position.X == this.Position.X - 1 && w.Position.Y == this.Position.Y);
+        this.NeighbourRight = tracks.FirstOrDefault(w => w.Position.X == this.Position.X + 1 && w.Position.Y == this.Position.Y);
     }
 
-    public Track? NeighbourDownOrNull() 
-        => this.neighbours.FirstOrDefault(w => w.Position.X == this.Position.X && w.Position.Y == this.Position.Y + 1);
-
-    public Track? NeighbourUpOrNull()
-        => this.neighbours.FirstOrDefault(w => w.Position.X == this.Position.X && w.Position.Y == this.Position.Y - 1);
-
-    public Track? NeighbourLeftOrNull()
-        => this.neighbours.FirstOrDefault(w => w.Position.X == this.Position.X - 1 && w.Position.Y == this.Position.Y);
-
-    public Track? NeighbourRightOrNull()
-        => this.neighbours.FirstOrDefault(w => w.Position.X == this.Position.X + 1 && w.Position.Y == this.Position.Y);
+    public Track? NeighbourBelow { get; private set; }
+    public Track? NeighbourAbove { get; private set; }
+    public Track? NeighbourLeft { get; private set; }
+    public Track? NeighbourRight { get; private set; }
 }
 
 class Train : IWorldObject
@@ -129,9 +120,9 @@ class Train : IWorldObject
 
     public void ResetPosition(Track track, Heading heading)
     {
-        this.Location = track;
         this.visitedTracks.Clear();
         this.heading = heading;
+        this.MoveToTrack(track);
     }
 
     public bool MakeStep()
@@ -140,7 +131,7 @@ class Train : IWorldObject
 
         if (this.heading == Heading.Down)
         {
-            var trackBelow = this.Location.NeighbourDownOrNull();
+            var trackBelow = this.Location.NeighbourBelow;
             if (trackBelow == null)
             {
                 needToTurn = true;
@@ -153,7 +144,7 @@ class Train : IWorldObject
         }
         else if (this.heading == Heading.Up)
         {
-            var trackAbove = this.Location.NeighbourUpOrNull();
+            var trackAbove = this.Location.NeighbourAbove;
             if (trackAbove == null)
             {
                 needToTurn = true;
@@ -166,7 +157,7 @@ class Train : IWorldObject
         }
         else if (this.heading == Heading.Left)
         {
-            var trackLeft = this.Location.NeighbourLeftOrNull();
+            var trackLeft = this.Location.NeighbourLeft;
             if (trackLeft == null)
             {
                 needToTurn = true;
@@ -179,7 +170,7 @@ class Train : IWorldObject
         }
         else if (this.heading == Heading.Right)
         {
-            var trackRight = this.Location.NeighbourRightOrNull();
+            var trackRight = this.Location.NeighbourRight;
             if (trackRight == null)
             {
                 needToTurn = true;
