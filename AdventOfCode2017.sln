@@ -45,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day17_Spinlock", "Day17_Spi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day18_Duet", "Day18_Duet\Day18_Duet.csproj", "{F41EA62C-A767-40FA-9773-2B7D577BCFCC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day19_Trains", "Day19_Trains\Day19_Trains.csproj", "{75BB0C53-EC7B-4581-9726-6C6C9C3A6502}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{F41EA62C-A767-40FA-9773-2B7D577BCFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F41EA62C-A767-40FA-9773-2B7D577BCFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F41EA62C-A767-40FA-9773-2B7D577BCFCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75BB0C53-EC7B-4581-9726-6C6C9C3A6502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75BB0C53-EC7B-4581-9726-6C6C9C3A6502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75BB0C53-EC7B-4581-9726-6C6C9C3A6502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75BB0C53-EC7B-4581-9726-6C6C9C3A6502}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
