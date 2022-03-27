@@ -127,70 +127,24 @@ class Train : IWorldObject
 
     public bool MakeStep()
     {
-        bool needToTurn = false;
+        var track = this.heading switch
+        {
+            Heading.Down => this.Location.NeighbourBelow,
+            Heading.Up => this.Location.NeighbourAbove,
+            Heading.Left => this.Location.NeighbourLeft,
+            Heading.Right => this.Location.NeighbourRight,
+            _ => throw new Exception()
+        };
 
-        if (this.heading == Heading.Down)
-        {
-            var trackBelow = this.Location.NeighbourBelow;
-            if (trackBelow == null)
-            {
-                needToTurn = true;
-            }
-            else
-            {
-                MoveToTrack(trackBelow);
-                return true;
-            }
-        }
-        else if (this.heading == Heading.Up)
-        {
-            var trackAbove = this.Location.NeighbourAbove;
-            if (trackAbove == null)
-            {
-                needToTurn = true;
-            }
-            else
-            {
-                MoveToTrack(trackAbove);
-                return true;
-            }
-        }
-        else if (this.heading == Heading.Left)
-        {
-            var trackLeft = this.Location.NeighbourLeft;
-            if (trackLeft == null)
-            {
-                needToTurn = true;
-            }
-            else
-            {
-                MoveToTrack(trackLeft);
-                return true;
-            }
-        }
-        else if (this.heading == Heading.Right)
-        {
-            var trackRight = this.Location.NeighbourRight;
-            if (trackRight == null)
-            {
-                needToTurn = true;
-            }
-            else
-            {
-                MoveToTrack(trackRight);
-                return true;
-            }
-        }
-
-        if (needToTurn)
+        if (track == null)
         {
             if (this.Location.Neighbours.Count() < 2)
                 return false;
-            if (this.Location.Neighbours.Count() > 2) 
+            if (this.Location.Neighbours.Count() > 2)
                 throw new Exception();
 
-            var track = this.Location.Neighbours.First(w => !visitedTracks.Contains(w));
-            
+            track = this.Location.Neighbours.First(w => !visitedTracks.Contains(w));
+
             this.heading = (track.Position.X - this.Position.X, track.Position.Y - this.Position.Y) switch
             {
                 (0, -1) => Heading.Up,
@@ -199,12 +153,15 @@ class Train : IWorldObject
                 (1, 0) => Heading.Right,
                 _ => throw new Exception()
             };
+        }
 
+        if (track != null)
+        {
             MoveToTrack(track);
             return true;
         }
-
-        return false;
+        else return false;
+        
     }
 
     private void MoveToTrack(Track track)
