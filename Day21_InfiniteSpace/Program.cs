@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-var enhancementRules = new InputProvider<EnhancementRule?>("Input.txt", GetEnhancementRule).Where(w => w != null).Cast<EnhancementRule>().ToList();
+﻿var enhancementRules = new InputProvider<EnhancementRule?>("Input.txt", GetEnhancementRule).Where(w => w != null).Cast<EnhancementRule>().ToList();
 Dictionary<string, EnhancementRule> pixelTileMemoizationDict = new();
 
 var printer = new WorldPrinter();
@@ -9,6 +7,8 @@ var initialString = ".#./..#/###";
 var initial = GetPixelsFromString(initialString, 0, 0);
 
 var world = new SimpleWorld<Pixel>(initial);
+
+bool printOut = false;
 
 for (int iteration = 1; iteration < 19; iteration++)
 {
@@ -47,10 +47,15 @@ for (int iteration = 1; iteration < 19; iteration++)
     }
 
     world = new SimpleWorld<Pixel>(pixels);
-    //printer.Print(world);
+    
     Console.WriteLine($"Iteration {iteration} Pixels On: {world.WorldObjects.Cast<Pixel>().LongCount(w => w.IsOn)}");
-    //Console.WriteLine("Press a key to iterate");
-    //Console.ReadKey();
+    
+    if (printOut)
+    {
+        printer.Print(world);
+        Console.WriteLine("Press a key to iterate");
+        Console.ReadKey();
+    }
 }
 
 static IEnumerable<Pixel> GetPixelsFromString(string input, int topLeftX, int topLeftY)
@@ -115,7 +120,6 @@ EnhancementRule GetMatchingEnhancementRule(IEnumerable<Pixel> pixels)
 
     foreach (var transformedPixels in GetAllTransformations(pixels))
     {
-        var str = GetStringFromPixels(transformedPixels);
         var rule = enhancementRules.FirstOrDefault(w => w.Before == GetStringFromPixels(transformedPixels));
 
         if (rule != null)
@@ -171,18 +175,3 @@ static IEnumerable<IEnumerable<Pixel>> GetAllTransformations(IEnumerable<Pixel> 
 }
 
 record EnhancementRule(string Before, string After);
-
-class Pixel : IWorldObject
-{
-    public Point Position => new(this.X, this.Y);
-
-    public char CharRepresentation => this.IsOn ? '#' : '.';
-
-    public int X { get; init; }
-
-    public int Y { get; init; }
-
-    public int Z => 1;
-
-    public bool IsOn { get; init; }
-}
