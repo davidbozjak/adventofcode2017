@@ -20,11 +20,13 @@ public interface IWorld
 public class WorldPrinter
 {
     private readonly bool skipEmptyLines;
+    private readonly bool clearScreenFirst;
     private readonly int frameSize;
 
-    public WorldPrinter(bool skipEmptyLines = true, int frameSize = 5)
+    public WorldPrinter(bool skipEmptyLines = true, bool clearScreenFirst = true, int frameSize = 5)
     {
         this.skipEmptyLines = skipEmptyLines;
+        this.clearScreenFirst = clearScreenFirst;
         this.frameSize = frameSize;
     }
 
@@ -52,7 +54,10 @@ public class WorldPrinter
 
     public void Print(IWorld world, int minX, int maxX, int minY, int maxY)
     {
-        Console.Clear();
+        if (this.clearScreenFirst)
+        {
+            Console.Clear();
+        }
 
         for (int y = minY; y <= maxY; y++)
         {

@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 
 var enhancementRules = new InputProvider<EnhancementRule?>("Input.txt", GetEnhancementRule).Where(w => w != null).Cast<EnhancementRule>().ToList();
+Dictionary<string, EnhancementRule> pixelTileMemoizationDict = new();
+
 var printer = new WorldPrinter();
 
 var initialString = ".#./..#/###";
@@ -8,39 +10,47 @@ var initial = GetPixelsFromString(initialString, 0, 0);
 
 var world = new SimpleWorld<Pixel>(initial);
 
-for (int iteration = 1; iteration < 3; iteration++)
+for (int iteration = 1; iteration < 19; iteration++)
 {
     if (world.Width != world.Height) throw new Exception("Always expecting world to be square");
 
     int size = world.Width;
 
     List<Pixel> pixels = new();
-    int cellSize = size % 3 == 0 ? 3 : 2;
-    int numOfCells = size / cellSize;
+    int sourceCellSize = size % 2 == 0 ? 2 : 3;
+    int destinationCellSize = size % 2 == 0 ? 3 : 4;
+    int numOfCells = size / sourceCellSize;
 
-    for (int cell = 0; cell < numOfCells; cell++)
+    for (int cellX = 0; cellX < numOfCells; cellX++)
     {
-        int originalTopLeft = cell * cellSize;
-
-        var originalPixels = new List<Pixel>();
-
-        for (int y = originalTopLeft; y < originalTopLeft + cellSize; y++)
+        for (int cellY = 0; cellY < numOfCells; cellY++)
         {
-            for (int x = originalTopLeft; x < originalTopLeft + cellSize; x++)
-            {
-                originalPixels.Add(world.GetObjectAt(x, y));
-            }
-        }
+            int sourceTopLeftX = cellX * sourceCellSize;
+            int sourceTopLeftY = cellY * sourceCellSize;
 
-        var ruleToApply = GetMatchingEnhancementRule(originalPixels);
-        pixels.AddRange(GetPixelsFromString(ruleToApply.After, originalTopLeft, originalTopLeft));
+            var originalPixels = new List<Pixel>();
+
+            for (int y = sourceTopLeftY, stepY = 0; stepY < sourceCellSize; y++, stepY++)
+            {
+                for (int x = sourceTopLeftX, stepX = 0; stepX < sourceCellSize; x++, stepX++)
+                {
+                    originalPixels.Add(world.GetObjectAt(x, y));
+                }
+            }
+
+            int destinationTopLeftX = cellX * destinationCellSize;
+            int destinationTopLeftY = cellY * destinationCellSize;
+
+            var ruleToApply = GetMatchingEnhancementRule(originalPixels);
+            pixels.AddRange(GetPixelsFromString(ruleToApply.After, destinationTopLeftX, destinationTopLeftY));
+        }
     }
 
     world = new SimpleWorld<Pixel>(pixels);
-    printer.Print(world);
-    Console.WriteLine($"Iteration {iteration} Pixels On: {world.WorldObjects.Cast<Pixel>().Count(w => w.IsOn)}");
-    Console.WriteLine("Press a key to iterate");
-    Console.ReadKey();
+    //printer.Print(world);
+    Console.WriteLine($"Iteration {iteration} Pixels On: {world.WorldObjects.Cast<Pixel>().LongCount(w => w.IsOn)}");
+    //Console.WriteLine("Press a key to iterate");
+    //Console.ReadKey();
 }
 
 static IEnumerable<Pixel> GetPixelsFromString(string input, int topLeftX, int topLeftY)
@@ -99,14 +109,65 @@ static string GetStringFromPixels(IEnumerable<Pixel> pixels)
 
 EnhancementRule GetMatchingEnhancementRule(IEnumerable<Pixel> pixels)
 {
-    // find a way to do transformations
+    var key = GetStringFromPixels(pixels);
+    if (pixelTileMemoizationDict.ContainsKey(key))
+        return pixelTileMemoizationDict[key];
 
-    var transformedPixels = pixels;
-    var str = GetStringFromPixels(transformedPixels);
-    var rule = enhancementRules.FirstOrDefault(w => w.Before == GetStringFromPixels(transformedPixels));
+    foreach (var transformedPixels in GetAllTransformations(pixels))
+    {
+        var str = GetStringFromPixels(transformedPixels);
+        var rule = enhancementRules.FirstOrDefault(w => w.Before == GetStringFromPixels(transformedPixels));
 
-    if (rule != null) return rule;
+        if (rule != null)
+        {
+            pixelTileMemoizationDict.Add(key, rule);
+            return rule;
+        }
+    }
+
+    //always expecing to find a match
     throw new Exception();
+}
+
+static IEnumerable<IEnumerable<Pixel>> GetAllTransformations(IEnumerable<Pixel> pixels)
+{
+    var originalWorld = new SimpleWorld<Pixel>(pixels);
+    var noFlipWorld = new SimpleWorld<Pixel>(pixels);
+
+    yield return noFlipWorld.WorldObjectsT;
+
+    for (int i = 0; i < 3; i++)
+    {
+        noFlipWorld = TransformedWorldBuilder.CreateRotated90(noFlipWorld);
+        yield return noFlipWorld.WorldObjectsT;
+    }
+
+    var horizontalFlipWorld = TransformedWorldBuilder.CreateFlippedHorizontally(originalWorld);
+    yield return horizontalFlipWorld.WorldObjectsT;
+
+    for (int i = 0; i < 3; i++)
+    {
+        horizontalFlipWorld = TransformedWorldBuilder.CreateRotated90(horizontalFlipWorld);
+        yield return horizontalFlipWorld.WorldObjectsT;
+    }
+
+    var verticalFlipWorld = TransformedWorldBuilder.CreateFlippedVertically(originalWorld);
+    yield return verticalFlipWorld.WorldObjectsT;
+
+    for (int i = 0; i < 3; i++)
+    {
+        verticalFlipWorld = TransformedWorldBuilder.CreateRotated90(verticalFlipWorld);
+        yield return verticalFlipWorld.WorldObjectsT;
+    }
+
+    var bothFlipWorld = TransformedWorldBuilder.CreateFlippedVerticallyAndHorizontally(originalWorld);
+    yield return bothFlipWorld.WorldObjectsT;
+
+    for (int i = 0; i < 3; i++)
+    {
+        bothFlipWorld = TransformedWorldBuilder.CreateRotated90(bothFlipWorld);
+        yield return bothFlipWorld.WorldObjectsT;
+    }
 }
 
 record EnhancementRule(string Before, string After);
@@ -117,11 +178,11 @@ class Pixel : IWorldObject
 
     public char CharRepresentation => this.IsOn ? '#' : '.';
 
-    public int X { get; set; }
+    public int X { get; init; }
 
-    public int Y { get; set; }
+    public int Y { get; init; }
 
     public int Z => 1;
 
-    public bool IsOn { get; set; }
+    public bool IsOn { get; init; }
 }
