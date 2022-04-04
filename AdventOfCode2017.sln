@@ -53,6 +53,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day21_InfiniteSpace", "Day2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day22_TurtleVirus", "Day22_TurtleVirus\Day22_TurtleVirus.csproj", "{575A43D9-B911-4071-9454-21C0DCD08833}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day23_Debug", "Day23_Debug\Day23_Debug.csproj", "{9445A5BF-102A-4256-8A3B-BACDB53D7CEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +161,10 @@ Global
 		{575A43D9-B911-4071-9454-21C0DCD08833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{575A43D9-B911-4071-9454-21C0DCD08833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{575A43D9-B911-4071-9454-21C0DCD08833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9445A5BF-102A-4256-8A3B-BACDB53D7CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9445A5BF-102A-4256-8A3B-BACDB53D7CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9445A5BF-102A-4256-8A3B-BACDB53D7CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9445A5BF-102A-4256-8A3B-BACDB53D7CEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

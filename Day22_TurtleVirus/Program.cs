@@ -12,7 +12,6 @@ Console.WriteLine($"Part 1: {numberOfInfections}");
 tiles = GetInitialStateOfMap();
 virus = new VirusTurtle(tiles.GetOrCreateInstance((initialWorld.Width / 2, initialWorld.Height / 2)), tiles, true);
 
-
 numberOfInfections = Enumerable.Range(0, 10000000)
     .Count(w => virus.Activate());
 
