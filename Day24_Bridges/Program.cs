@@ -5,26 +5,26 @@ var components = new InputProvider<Component?>("Input.txt", GetComponent).Where(
 Console.WriteLine($"Part 1: { GetStrengthForBridge(GetStrongestBridge(new List<Component>(), 0, components, GetStrengthForBridge))}");
 Console.WriteLine($"Part 2: { GetStrengthForBridge(GetStrongestBridge(new List<Component>(), 0, components, GetStrengthForLongestBridge))}");
 
-static IEnumerable<Component> GetStrongestBridge(List<Component> baseBridge, int pinToMatch, List<Component> remainingComponents, Func<IEnumerable<Component>, int> evalFunc)
+static IEnumerable<Component> GetStrongestBridge(List<Component> baseBridge, int lastPin, List<Component> components, Func<IEnumerable<Component>, int> evalFunc)
 {
     List<(IEnumerable<Component> bridge, int strength)> possibleBridges = new()
     {
         (baseBridge, evalFunc(baseBridge))
     };
 
-    foreach (var component in remainingComponents)
+    foreach (var component in components)
     {
         if (baseBridge.Contains(component)) continue;
 
-        if (component.PortA != pinToMatch && component.PortB != pinToMatch)
+        if (component.PortA != lastPin && component.PortB != lastPin)
             continue;
 
         var bridge = baseBridge.ToList();
         bridge.Add(component);
 
-        var nextPin = component.PortA == pinToMatch ? component.PortB : component.PortA;
+        var nextPin = component.PortA == lastPin ? component.PortB : component.PortA;
 
-        var maxFollowingBridge = GetStrongestBridge(bridge, nextPin, remainingComponents, evalFunc);
+        var maxFollowingBridge = GetStrongestBridge(bridge, nextPin, components, evalFunc);
         possibleBridges.Add((maxFollowingBridge, evalFunc(maxFollowingBridge)));
     }
 
