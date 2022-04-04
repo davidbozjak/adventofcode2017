@@ -44,7 +44,6 @@
         {
             for (int x = world.MinX; x <= world.MaxX; x++)
             {
-                //var obj = world.GetObjectAt(x, row);
                 rotatedPixels.Add(new Pixel
                 {
                     IsOn = world.GetObjectAt(x, row).IsOn,
@@ -55,21 +54,5 @@
         }
 
         return new SimpleWorld<Pixel>(rotatedPixels);
-
-        //Debug
-        //Console.Clear();
-        //Console.WriteLine("Testing rotation");
-        //var printer = new WorldPrinter(clearScreenFirst: false);
-
-        //Console.WriteLine("Original");
-        //printer.Print(world);
-
-        //var rotatedWorld = new SimpleWorld<Pixel>(rotatedPixels);
-
-        //Console.WriteLine("Rotated90:");
-        //printer.Print(rotatedWorld);
-
-        //Console.ReadKey();
-        //return rotatedWorld;
     }
 }
