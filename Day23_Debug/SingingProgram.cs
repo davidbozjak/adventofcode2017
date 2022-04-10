@@ -5,7 +5,6 @@ class SingingProgram
     private readonly UniqueFactory<string, Register> Registers;
     private readonly List<string> InstructionStrings;
     private int instructionIndex;
-    private int multCount = 0;
 
     public SingingProgram(IEnumerable<string> instructions)
     {
@@ -20,15 +19,21 @@ class SingingProgram
         r.Value = value;
     }
 
-    public bool Run()
+    public int Run(string commandToCount)
     {
-        bool ranAtLeastOneCommand = false;
+        int count = 0;
+
         for (; instructionIndex >= 0 && instructionIndex < InstructionStrings.Count; instructionIndex++)
         {
             var instructionString = InstructionStrings[instructionIndex];
 
             var parts = instructionString.Split(" ", StringSplitOptions.RemoveEmptyEntries);
             var instruction = parts[0];
+
+            if (instruction == commandToCount)
+            {
+                count++;
+            }
 
             if (instruction == "set")
             {
@@ -48,7 +53,6 @@ class SingingProgram
             }
             else if (instruction == "mul")
             {
-                Console.WriteLine($"Part 1: {++multCount}");
                 var r = Registers.GetOrCreateInstance(parts[1]);
 
                 var value = GetValueOrRegisterValue(parts[2]);
@@ -67,11 +71,9 @@ class SingingProgram
                 }
             }
             else throw new Exception("Unknown instruction");
-
-            ranAtLeastOneCommand = true;
         }
 
-        return ranAtLeastOneCommand;
+        return count;
 
         long GetValueOrRegisterValue(string valueOrRegister)
         {
